@@ -18,7 +18,7 @@ import Users from "./Pages/Users";
 import Friends from "./Pages/Friends";
 import FriendRequests from "./Pages/FriendRequests";
 import ChatPage from "./Pages/ChatPage";
-import Home from "./pages/Home";
+import Home from "./Pages/Home";
 import SubscriptionPlans from "./Pages/SubscriptionPlans";
 import PostDetails from "./Pages/PostDetails";
 import Dashboard from "./Pages/Dashboard";
