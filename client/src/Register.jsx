@@ -144,25 +144,25 @@ const Register = () => {
     : "Send OTP to Verify Email";
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#0B1020]">
+    <section className="relative min-h-screen supports-[height:100dvh]:min-h-[100dvh] overflow-hidden bg-[#0B1020]">
       {/* Background Glow */}
-      <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-indigo-600/30 blur-3xl" />
-      <div className="absolute top-1/3 -right-32 h-96 w-96 rounded-full bg-orange-500/20 blur-3xl" />
-      <div className="absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-purple-600/20 blur-3xl" />
+      <div className="absolute -top-32 -left-32 h-72 w-72 rounded-full bg-indigo-600/30 blur-3xl sm:h-96 sm:w-96" />
+      <div className="absolute top-1/3 -right-32 h-72 w-72 rounded-full bg-orange-500/20 blur-3xl sm:h-96 sm:w-96" />
+      <div className="absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-purple-600/20 blur-3xl sm:h-80 sm:w-80" />
 
-      <main className="relative z-10 grid min-h-screen lg:grid-cols-2">
+      <main className="relative z-10 grid min-h-screen supports-[height:100dvh]:min-h-[100dvh] lg:grid-cols-2">
         {/* Left Branding Section */}
-        <aside className="hidden lg:flex flex-col justify-between px-12 py-12 xl:px-16 text-white">
+        <aside className="hidden flex-col justify-between px-10 py-10 text-white lg:flex xl:px-16 xl:py-12">
           <div className="flex items-center gap-3">
             {/* ✅ LOGO 1: Desktop Sidebar */}
-            <img 
-              src="/fav.png" 
-              alt="internArea Logo" 
-              className="h-12 w-12 rounded-2xl object-contain shadow-lg bg-white/10 p-1"
+            <img
+              src="/fav.png"
+              alt="internArea Logo"
+              className="h-11 w-11 rounded-2xl object-contain shadow-lg bg-white/10 p-1 xl:h-12 xl:w-12"
             />
             <div>
-              <h1 className="text-2xl font-bold tracking-tight">internArea</h1>
-              <p className="text-sm text-slate-300">Internship & career platform</p>
+              <h1 className="text-xl font-bold tracking-tight xl:text-2xl">internArea</h1>
+              <p className="text-xs text-slate-300 xl:text-sm">Internship & career platform</p>
             </div>
           </div>
 
@@ -170,76 +170,76 @@ const Register = () => {
             <span className="inline-flex rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm text-slate-200 backdrop-blur">
               Build your career profile
             </span>
-            <h2 className="mt-6 text-5xl font-extrabold leading-tight tracking-tight">
+            <h2 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight xl:mt-6 xl:text-5xl">
               Create your account and unlock internship opportunities.
             </h2>
-            <p className="mt-5 text-lg leading-8 text-slate-300">
+            <p className="mt-4 text-base leading-7 text-slate-300 xl:mt-5 xl:text-lg xl:leading-8">
               Join internArea to explore internships, apply faster, and manage
               your career journey from one place.
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
-            <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur">
-              <p className="text-2xl font-bold">Easy</p>
-              <p className="mt-1 text-sm text-slate-300">Registration</p>
+          <div className="grid grid-cols-3 gap-3 xl:gap-4">
+            <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur xl:p-4">
+              <p className="text-xl font-bold xl:text-2xl">Easy</p>
+              <p className="mt-1 text-xs text-slate-300 xl:text-sm">Registration</p>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur">
-              <p className="text-2xl font-bold">100+</p>
-              <p className="mt-1 text-sm text-slate-300">Internships</p>
+            <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur xl:p-4">
+              <p className="text-xl font-bold xl:text-2xl">100+</p>
+              <p className="mt-1 text-xs text-slate-300 xl:text-sm">Internships</p>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur">
-              <p className="text-2xl font-bold">Secure</p>
-              <p className="mt-1 text-sm text-slate-300">Account</p>
+            <div className="rounded-2xl border border-white/10 bg-white/10 p-3.5 backdrop-blur xl:p-4">
+              <p className="text-xl font-bold xl:text-2xl">Secure</p>
+              <p className="mt-1 text-xs text-slate-300 xl:text-sm">Account</p>
             </div>
           </div>
         </aside>
 
         {/* Register Card */}
-        <div className="flex items-center justify-center px-4 py-10 sm:px-6 lg:px-10">
+        <div className="flex w-full items-center justify-center px-4 py-8 sm:px-6 sm:py-10 lg:px-8 xl:px-10">
           <div className="w-full max-w-md">
-            {/* Mobile Brand */}
-            <div className="mb-6 flex justify-center lg:hidden">
+            {/* Mobile / Tablet Brand */}
+            <div className="mb-5 flex justify-center sm:mb-6 lg:hidden">
               <div className="flex items-center gap-3">
                 {/* ✅ LOGO 2: Mobile Header */}
-                <img 
-                  src="/fav.png" 
-                  alt="internArea Logo" 
-                  className="h-12 w-12 rounded-2xl object-contain shadow-lg bg-white/10 p-1"
+                <img
+                  src="/fav.png"
+                  alt="internArea Logo"
+                  className="h-10 w-10 rounded-2xl object-contain shadow-lg bg-white/10 p-1 sm:h-12 sm:w-12"
                 />
                 <div>
-                  <h1 className="text-2xl font-bold text-white">internArea</h1>
-                  <p className="text-sm text-slate-300">Career starts here</p>
+                  <h1 className="text-xl font-bold text-white sm:text-2xl">internArea</h1>
+                  <p className="text-xs text-slate-300 sm:text-sm">Career starts here</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-white/20 bg-white/95 p-6 shadow-2xl backdrop-blur-xl sm:p-8">
-              <div className="mb-7 hidden items-center gap-3 lg:flex">
+            <div className="rounded-2xl border border-white/20 bg-white/95 p-5 shadow-2xl backdrop-blur-xl sm:rounded-3xl sm:p-7 lg:rounded-[2rem] lg:p-8">
+              <div className="mb-6 hidden items-center gap-3 lg:flex xl:mb-7">
                 {/* ✅ LOGO 3: Inside Register Card (Desktop) */}
-                <img 
-                  src="/fav.png" 
-                  alt="internArea Logo" 
-                  className="h-11 w-11 rounded-2xl object-contain shadow-lg"
+                <img
+                  src="/fav.png"
+                  alt="internArea Logo"
+                  className="h-10 w-10 rounded-2xl object-contain shadow-lg xl:h-11 xl:w-11"
                 />
                 <div>
-                  <h1 className="text-xl font-bold text-slate-900">internArea</h1>
+                  <h1 className="text-lg font-bold text-slate-900 xl:text-xl">internArea</h1>
                   <p className="text-xs text-slate-500">Create your new account</p>
                 </div>
               </div>
 
-              <div className="mb-7">
-                <h2 className="text-3xl font-bold tracking-tight text-slate-900">
+              <div className="mb-6 sm:mb-7">
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                   Create Account
                 </h2>
-                <p className="mt-2 text-sm text-slate-500">
+                <p className="mt-1.5 text-sm text-slate-500 sm:mt-2">
                   Enter your details to get started with internArea.
                 </p>
               </div>
 
               {message && (
                 <div
-                  className={`mb-5 flex items-center gap-2 rounded-2xl border px-4 py-3 text-sm font-medium ${
+                  className={`mb-5 flex items-start gap-2 break-words rounded-xl border px-3.5 py-3 text-sm font-medium sm:rounded-2xl sm:px-4 ${
                     isSuccess
                       ? "border-green-200 bg-green-50 text-green-600"
                       : "border-red-200 bg-red-50 text-red-600"
@@ -262,7 +262,7 @@ const Register = () => {
                     disabled={isLoading || otpSent}
                     onChange={(e) => setName(e.target.value)}
                     autoComplete="name"
-                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100 disabled:cursor-not-allowed disabled:opacity-70"
+                    className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100 disabled:cursor-not-allowed disabled:opacity-70 sm:rounded-2xl sm:px-4"
                   />
                 </div>
 
@@ -279,12 +279,16 @@ const Register = () => {
                       disabled={isLoading || otpSent}
                       onChange={(e) => setEmail(e.target.value)}
                       autoComplete="email"
-                      className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 pr-12 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100 disabled:cursor-not-allowed disabled:opacity-70"
+                      className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3 pr-12 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100 disabled:cursor-not-allowed disabled:opacity-70 sm:rounded-2xl sm:px-4 sm:pr-12"
                     />
                     {verifiedToken && (
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 text-green-500">
                         <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                       </span>
                     )}
@@ -299,12 +303,15 @@ const Register = () => {
                     </label>
                     <input
                       type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
+                      autoComplete="one-time-code"
                       placeholder="6-digit code"
                       value={otp}
                       maxLength={6}
                       disabled={isLoading}
                       onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-                      className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-center font-mono text-lg tracking-[0.4em] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100 disabled:cursor-not-allowed disabled:opacity-70"
+                      className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-center font-mono text-base tracking-[0.3em] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100 disabled:cursor-not-allowed disabled:opacity-70 sm:rounded-2xl sm:text-lg sm:tracking-[0.4em]"
                     />
                     <button
                       type="button"
@@ -317,7 +324,7 @@ const Register = () => {
                 )}
 
                 {/* Password */}
-                <div className="mb-6">
+                <div className="mb-5 sm:mb-6">
                   <label className="mb-2 block text-sm font-semibold text-slate-700">
                     Password
                   </label>
@@ -329,10 +336,11 @@ const Register = () => {
                       disabled={isLoading || otpSent}
                       onChange={(e) => setPassword(e.target.value)}
                       autoComplete="new-password"
-                      className="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-4 pr-12 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100 disabled:cursor-not-allowed disabled:opacity-70"
+                      className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-3.5 pr-12 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100 disabled:cursor-not-allowed disabled:opacity-70 sm:rounded-2xl sm:pl-4"
                     />
                     <button
                       type="button"
+                      aria-label={showPassword ? "Hide password" : "Show password"}
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 transition hover:text-slate-600"
                     >
@@ -362,7 +370,7 @@ const Register = () => {
                   )}
                 </div>
 
-                <p className="mb-6 text-xs text-slate-400">
+                <p className="mb-5 text-xs leading-relaxed text-slate-400 sm:mb-6">
                   By creating an account, you agree to our{" "}
                   <span className="cursor-pointer font-medium text-orange-600 hover:underline">
                     Terms of Service
@@ -378,7 +386,7 @@ const Register = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className={`flex w-full items-center justify-center gap-2 rounded-2xl px-4 py-3.5 font-bold text-white shadow-lg transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 ${
+                  className={`flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-bold text-white shadow-lg transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 sm:rounded-2xl sm:py-3.5 sm:text-base ${
                     verifiedToken
                       ? "bg-gradient-to-r from-green-500 to-emerald-600 shadow-green-500/25"
                       : "bg-gradient-to-r from-orange-500 to-orange-600 shadow-orange-500/25"
@@ -399,7 +407,7 @@ const Register = () => {
                 onError={(msg) => showError(msg)}
               />
 
-              <div className="my-6 flex items-center gap-3">
+              <div className="my-5 flex items-center gap-3 sm:my-6">
                 <div className="h-px flex-1 bg-slate-200" />
                 <span className="text-xs text-slate-400">OR</span>
                 <div className="h-px flex-1 bg-slate-200" />
@@ -416,7 +424,7 @@ const Register = () => {
               </div>
             </div>
 
-            <p className="mt-6 text-center text-xs text-slate-400">
+            <p className="mt-5 text-center text-xs text-slate-400 sm:mt-6">
               © {new Date().getFullYear()} internArea. All rights reserved.
             </p>
           </div>
