@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+#resume-preview {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+#resume-preview * {
+  color: #000000 !important;
+  border-color: #d1d5db !important;
+}
+
+/* Images ko affect mat karo */
+#resume-preview img {
+  display: block;
+}
+
+
+.goog-te-gadget-icon,
+.goog-te-gadget-simple,
+.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+/* अगर स्क्रीन पर कोई अजीब सा ट्रांसलेट विजेट बॉक्स बच जाता है */
+.skiptranslate {
+  display: none !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+
+/* ═══════════════════════════════════════════
+   🚫 GOOGLE TRANSLATE UI KILL SWITCH
+   ═══════════════════════════════════════════ */
+
+/* top banner iframe (jo page ko neeche push karta hai) */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame,
+.skiptranslate iframe {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+}
+
+/* floating blue balloon icon (jo screenshot me dikh raha hai) */
+.goog-te-gadget-icon,
+.goog-te-balloon-frame,
+#goog-gt-tt,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight {
+  display: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* translate widget container fully hide */
+#google_translate_element,
+.goog-te-gadget,
+.skiptranslate > iframe {
+  display: none !important;
+}
+
+/* select dropdown ko DOM me rakho par invisible (script chalti rahe) */
+.goog-te-combo {
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* body ka forced top offset hatao */
+body {
+  top: 0 !important;
+  position: static !important;
+}
+
+/* translated text ka yellow highlight hatao */
+font[style],
+span[style*="background-color: rgb(255, 255, 102)"] {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
