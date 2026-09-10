@@ -72,7 +72,12 @@ const apiLimiter = rateLimit({
   legacyHeaders: false,
   message: { success: false, message: "Too many requests, slow down." },
 });
-
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Internarea Backend is running 🚀",
+  });
+});
 app.use("/api", apiLimiter);
 
 app.get("/api/health", (req, res) => {
