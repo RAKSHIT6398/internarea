@@ -15,64 +15,50 @@
   display: block;
 }
 
-
-.goog-te-gadget-icon,
-.goog-te-gadget-simple,
-.goog-te-banner-frame,
-#goog-gt-tt,
-.goog-te-balloon-frame {
-  display: none !important;
-}
-
-body {
-  top: 0 !important;
-}
-
-/* अगर स्क्रीन पर कोई अजीब सा ट्रांसलेट विजेट बॉक्स बच जाता है */
-.skiptranslate {
-  display: none !important;
-}
-
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-4px) scale(.97); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-
 /* ═══════════════════════════════════════════
    🚫 GOOGLE TRANSLATE UI KILL SWITCH
    ═══════════════════════════════════════════ */
 
-/* top banner iframe (jo page ko neeche push karta hai) */
+/* Top banner + iframe */
 .goog-te-banner-frame,
 .goog-te-banner-frame.skiptranslate,
 iframe.goog-te-banner-frame,
+.skiptranslate > iframe,
 .skiptranslate iframe {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
 }
 
-/* floating blue balloon icon (jo screenshot me dikh raha hai) */
+/* Floating balloon, tooltip, icon */
 .goog-te-gadget-icon,
+.goog-te-gadget-simple,
 .goog-te-balloon-frame,
 #goog-gt-tt,
 .goog-tooltip,
-.goog-tooltip:hover,
-.goog-text-highlight {
+.goog-tooltip:hover {
   display: none !important;
   background: none !important;
   box-shadow: none !important;
 }
 
-/* translate widget container fully hide */
+/* Google Translate widget */
 #google_translate_element,
-.goog-te-gadget,
-.skiptranslate > iframe {
+.goog-te-gadget {
   display: none !important;
 }
 
-/* select dropdown ko DOM me rakho par invisible (script chalti rahe) */
+/* Skiptranslate wrapper */
+.skiptranslate {
+  display: none !important;
+}
+
+/* Select dropdown ko DOM me rakho par invisible (script chalti rahe) */
 .goog-te-combo {
   position: absolute !important;
   left: -9999px !important;
@@ -81,15 +67,17 @@ iframe.goog-te-banner-frame,
   pointer-events: none !important;
 }
 
-/* body ka forced top offset hatao */
+/* Body ka forced top offset hatao */
 body {
   top: 0 !important;
   position: static !important;
 }
 
-/* translated text ka yellow highlight hatao */
+/* Translated text ka yellow highlight hatao */
+.goog-text-highlight,
 font[style],
 span[style*="background-color: rgb(255, 255, 102)"] {
+  background: none !important;
   background-color: transparent !important;
   box-shadow: none !important;
 }

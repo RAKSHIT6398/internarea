@@ -2,45 +2,45 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-   <link rel="icon" type="image/png" href="/fav.png" />
+    <link rel="icon" type="image/png" href="/fav.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>internArea</title>
 
-    <!-- 🚫 Google Translate UI hide (inline = fastest, flicker nahi hoga) -->
     <style>
+      /* Google banner / tooltip / balloon hide */
       .goog-te-banner-frame,
       .goog-te-banner-frame.skiptranslate,
       iframe.goog-te-banner-frame,
       .skiptranslate > iframe,
       .goog-te-balloon-frame,
       .goog-te-gadget-icon,
-      .goog-te-gadget,
       #goog-gt-tt,
       .goog-tooltip,
-      .goog-tooltip:hover,
-      #google_translate_element {
+      .goog-tooltip:hover {
         display: none !important;
         visibility: hidden !important;
-        height: 0 !important;
-        box-shadow: none !important;
-        background: none !important;
       }
 
-      /* select ko DOM me rakho par screen se bahar (script chalti rahe) */
+      /* ✅ Container + select: DOM me rahe, screen se bahar (display:none NAHI) */
+      #google_translate_element,
+      .goog-te-gadget,
       .goog-te-combo {
-        position: absolute !important;
+        position: fixed !important;
         left: -9999px !important;
         top: -9999px !important;
+        width: 1px !important;
+        height: 1px !important;
         opacity: 0 !important;
         pointer-events: none !important;
+        overflow: hidden !important;
       }
 
-      /* body offset / yellow highlight reset */
       body {
         top: 0 !important;
         position: static !important;
       }
-      .goog-text-highlight {
+      .goog-text-highlight,
+      font {
         background: none !important;
         box-shadow: none !important;
       }
@@ -50,7 +50,9 @@
   <body>
     <div id="root"></div>
 
-    <!-- ═══════ GOOGLE TRANSLATE ═══════ -->
+    <!-- ✅ YE DIV ZAROORI HAI – isi se widget banta hai -->
+    <div id="google_translate_element"></div>
+
     <script type="text/javascript">
       function googleTranslateElementInit() {
         new google.translate.TranslateElement(
@@ -66,7 +68,7 @@
     </script>
     <script
       type="text/javascript"
-      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>
 
     <script type="module" src="/src/main.jsx"></script>

@@ -114,7 +114,6 @@ const LangPicker = ({ language, onChange, variant = "desktop" }) => {
             <Globe size={11} className="text-indigo-400" /> Select Language
           </p>
 
-          {/* 👈 CHANGED #1 : no-scrollbar added */}
           <div className="no-scrollbar max-h-72 space-y-0.5 overflow-y-auto overscroll-contain">
             {LANGS.map((l) => {
               const m = LANG_META[l];
@@ -352,30 +351,54 @@ function Navbar() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  /* ── Google Translate ── */
-  const changeUniversalLanguage = (lang) => {
-    const googleSelect = document.querySelector(".goog-te-combo");
-    if (googleSelect) {
-      googleSelect.value = LANG_MAP[lang] || "en";
-      googleSelect.dispatchEvent(new Event("change"));
+  /* ── Google Translate (cookie + select, dono) ── */
+  const setGoogTransCookie = (code) => {
+    const host = window.location.hostname;
+    const expire = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = `googtrans=; path=/; ${expire}`;
+    document.cookie = `googtrans=; path=/; domain=${host}; ${expire}`;
+    document.cookie = `googtrans=; path=/; domain=.${host}; ${expire}`;
+    if (code !== "en") {
+      document.cookie = `googtrans=/en/${code}; path=/`;
+      document.cookie = `googtrans=/en/${code}; path=/; domain=${host}`;
     }
   };
 
+  const changeUniversalLanguage = (lang, { reloadIfFail = false } = {}) => {
+    const code = LANG_MAP[lang] || "en";
+    setGoogTransCookie(code);
+
+    let tries = 0;
+    const tick = () => {
+      const select = document.querySelector(".goog-te-combo");
+      if (select) {
+        select.value = code;
+        select.dispatchEvent(new Event("change", { bubbles: true }));
+        return;
+      }
+      if (++tries < 40) setTimeout(tick, 250);          // ~10 sec try
+      else if (reloadIfFail) window.location.reload();  // cookie se translate ho jayega
+    };
+    tick();
+  };
+
+  // ✅ SIRF EK effect – page load + language change dono handle karega
   useEffect(() => {
     localStorage.setItem("language", language);
-    const timer = setTimeout(() => changeUniversalLanguage(language), 1000);
-    return () => clearTimeout(timer);
+    changeUniversalLanguage(language);
   }, [language]);
 
+  // Main Handler: Jab user dropdown se select kare
   const handleLanguageChange = async (selectedLanguage) => {
     if (selectedLanguage === language) return;
 
     try {
       const token = localStorage.getItem("token");
 
+      // French ke liye OTP logic
       if (selectedLanguage === "French") {
         await axios.post(`${API}/api/language/send-otp`, {}, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${token}` }
         });
         setShowOtpModal(true);
         return;
@@ -384,10 +407,23 @@ function Navbar() {
       await axios.post(`${API}/api/language/change`, { language: selectedLanguage }, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
+      localStorage.setItem("language", selectedLanguage);
+      setGoogTransCookie(LANG_MAP[selectedLanguage] || "en");
+
+      // English pe wapas = reload zaroori (Google widget revert theek se nahi karta)
+      if (selectedLanguage === "English") {
+        window.location.reload();
+        return;
+      }
+
       setLanguage(selectedLanguage);
+      changeUniversalLanguage(selectedLanguage, { reloadIfFail: true });
+
     } catch (error) {
-      setLanguage(localStorage.getItem("language") || "English");
+      console.error("Language change failed:", error);
       alert(error?.response?.data?.message || "Failed to change language");
+      setLanguage(localStorage.getItem("language") || "English");
     }
   };
 
@@ -400,7 +436,7 @@ function Navbar() {
       });
       setLanguage("French");
       localStorage.setItem("language", "French");
-      changeUniversalLanguage("French");
+      changeUniversalLanguage("French", { reloadIfFail: true });
       setShowOtpModal(false);
       setOtp("");
       alert("Language changed to French");
@@ -451,7 +487,6 @@ function Navbar() {
 
   /* ══════════════ SUGGESTION PANEL ══════════════ */
   const SuggestPanel = ({ mobile = false }) => (
-    /* 👈 CHANGED #2 : no-scrollbar added */
     <div
       className={`nb-pop no-scrollbar overflow-hidden rounded-2xl border border-zinc-700/60 bg-[#0c101c]/95 shadow-[0_24px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl ${
         mobile ? "mt-2.5 max-h-[65vh] overflow-y-auto" : "absolute left-0 right-0 top-[calc(100%+10px)] max-h-[75vh] overflow-y-auto"
@@ -536,7 +571,6 @@ function Navbar() {
 
       {/* 5. Results Found */}
       {!suggestLoading && flatResults.length > 0 && (
-        /* 👈 CHANGED #3 : no-scrollbar added */
         <div className="no-scrollbar max-h-[380px] space-y-3 overflow-y-auto p-2">
           {/* INTERNSHIPS */}
           {suggest.internships.length > 0 && (
@@ -705,15 +739,12 @@ function Navbar() {
 
   return (
     <>
-      {/* 👈 CHANGED #4 : .no-scrollbar CSS added */}
       <style>{`
         @keyframes nbPop {
           from { opacity: 0; transform: translateY(-8px) scale(0.98); }
           to { opacity: 1; transform: translateY(0) scale(1); }
         }
         .nb-pop { animation: nbPop 0.18s cubic-bezier(0.16, 1, 0.3, 1) both; }
-
-        /* 🚫 HIDE SCROLLBAR — scroll still works */
         .no-scrollbar {
           -ms-overflow-style: none;
           scrollbar-width: none;
@@ -772,7 +803,6 @@ function Navbar() {
       <nav className="sticky top-0 z-40 w-full border-b border-white/[0.08] bg-[#080b13]/85 backdrop-blur-xl transition-all">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2.5 px-3 sm:px-6">
 
-          {/* ✅ LOGO - Updated with fav.png */}
           <Link to="/home" className="group flex shrink-0 items-center gap-2.5">
             <img 
               src="/fav.png" 
@@ -1003,7 +1033,6 @@ function Navbar() {
         <div className="fixed inset-0 z-50 xl:hidden">
           <div className="fixed inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
 
-          {/* 👈 no-scrollbar bhi laga diya drawer pe */}
           <aside className="no-scrollbar fixed inset-y-0 right-0 flex h-full w-full max-w-xs flex-col justify-between overflow-y-auto border-l border-zinc-800 bg-[#0b0f19] p-5 shadow-2xl">
             <div>
               <div className="mb-4 flex items-center justify-between border-b border-zinc-800/80 pb-4">
