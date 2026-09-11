@@ -94,7 +94,7 @@ const sendEmail = async (email, subject, options) => {
     const result = await brevo.transactionalEmails.sendTransacEmail({
       sender: {
         name: "internArea",
-        email: process.env.EMAIL_FROM, // Brevo mein verified sender email
+        email: process.env.EMAIL_USER, // Brevo mein verified sender email
       },
       to: [{ email }],
       subject,
