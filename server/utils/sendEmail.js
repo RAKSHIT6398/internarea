@@ -31,39 +31,40 @@
 
 // module.exports = sendEmail;
 
-
 const nodemailer = require("nodemailer");
 
 const sendEmail = async (email, subject, options) => {
   try {
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587, // 465 mat use kar
-      secure: false, // 587 pe false hota hai
-      family: 4, // FIX 3: Force IPv4
+      // ✅ Brevo SMTP Settings
+      host: "smtp-relay.brevo.com", 
+      port: 587, 
+      secure: false, // true for 465, false for other ports like 587
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS, // Gmail App Password
+        user: process.env.EMAIL_USER, // Brevo se linked email
+        pass: process.env.EMAIL_PASS, // Brevo SMTP Key (Not Gmail App Password)
       },
+      // Optional: Agar phir bhi IPv6 issue aaye toh ye rakhein, par Brevo usually stable hota hai
+      // family: 4, 
     });
 
     const html = typeof options === "string" ? options : options?.html;
     const text = typeof options === "string" ? undefined : options?.text;
 
     await transporter.sendMail({
-      from: `"internArea" <${process.env.EMAIL_USER}>`,
+      from: `"internArea" <${process.env.EMAIL_USER}>`, // Sender name and email
       to: email,
       subject,
       html, 
       text: text || "Please view this email in HTML mode.",
     });
 
-    console.log("✅ Email Sent Successfully");
+    console.log("✅ Email Sent Successfully via Brevo");
     return true;
   } catch (error) {
     console.log("❌ Email Error:", error.message);
-    // throw error;  <-- YE HATA DE, warna login fail hoga
-    return false; // email fail bhi hua to login to hone de
+    // Login fail na ho isliye false return kar rahe hain
+    return false; 
   }
 };
 
