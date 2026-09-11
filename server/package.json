@@ -12,6 +12,7 @@
   "type": "commonjs",
   "description": "",
   "dependencies": {
+    "@getbrevo/brevo": "^6.0.3",
     "bcryptjs": "^3.0.3",
     "careersphere": "file:..",
     "cloudinary": "^1.41.3",
